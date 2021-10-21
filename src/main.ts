@@ -1,8 +1,15 @@
-import './style.css'
+import { Page } from './Page';
+import './style.css';
+import header from './html/header.ts.html';
+import cableInfoForm from './html/cable-info-form.ts.html';
+import footer from './html/footer.ts.html';
 
-const app = document.querySelector<HTMLDivElement>('#app')!
+const pageContents = new Page(cableInfoForm).render();
+
+const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+${header}
+${pageContents}
+${footer}
+`;
