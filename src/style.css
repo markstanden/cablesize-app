@@ -1,8 +1,24 @@
+:root {
+   --app-font-size: 1.1rem;
+   --app-border-radius: 0.4rem;
+   --app-color-primary: #005f73;
+   --app-color-secondary: #0a9396;
+   --app-color-background: #94d2bd;
+   --app-color-text: #001219;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+   font-family: Avenir, Helvetica, Arial, sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
 }

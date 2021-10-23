@@ -1,46 +1,243 @@
 export default `
 <form action="GET" class="cable-info-form">
-   <fieldset>
-      <label for="cable-type" class="cable-type-group-label"
-         >Cable Type
-         <br />
-         <input
-            type="radio"
-            id="swa"
-            name="cable-type"
-            value="Steel Wire Armoured (70degC)"
-            class="cable-type"
-         />
-         <label for="cable-type" class="cable-type-label"
-            >Steel Wire Armoured (70degC</label
+   <fieldset class="outer-group form-container">
+      <legend> Cable Information </legend>
+      <fieldset class="inner-group">
+         <label for="cable-type" class="form-label"
+            >Cable Type</label
          >
-         <br />
-         <input
-            type="radio"
-            id="tande"
-            name="cable-type"
-            value="Twin and Earth (70degC)"
-            class="cable-type"
-         />
-         <label for="cable-type" class="cable-type-label"
-            >Twin and Earth (70degC)</label
+         <select id="cable-type" class="form-select">
+            <option value="swa70" class="select-option"
+               >Steel Wire Armoured (70&deg;C)</option
+            >
+            <option value="t+e70" class="select-option"
+               >Twin and Earth (70&deg;C)</option
+            >
+            <option value="singles70" class="select-option"
+               >Singles (70&deg;C)</option
+            >
+         </select>
+      </fieldset>
+      <fieldset class="inner-group">
+         <label
+            for="installation-method"
+            class="form-label"
          >
-         <br />
-         <input
-            type="radio"
-            id="singles"
-            name="cable-type"
-            value="Singles (70degC)"
-            class="cable-type"
-         />
-         <label for="cable-type" class="cable-type-label"
-            >Singles (70degC)</label
+            Installation Method
+         </label>
+         <select
+            id="installation-method"
+            class="form-select"
          >
-      </label>
+            <option value="buried" class="select-option"
+               >Buried</option
+            >
+            <option value="clipped" class="select-option"
+               >Clipped Direct</option
+            >
+            <option value="tray" class="select-option"
+               >On Cable Tray</option
+            >
+            <option value="enclosed" class="select-option"
+               >Enclosed in Trunking or Conduit</option
+            >
+         </select>
+      </fieldset>
+      <fieldset class="inner-group">
+         <label
+            for="cable-length"
+            class="cable-length-label"
+            >Cable Length
+            <input
+               type="text"
+               id="cable-length"
+               class="form-input"
+            />
+            metres</label
+         >
+      </fieldset>
    </fieldset>
-   <br />
-   <label for="cable-length" class="cable-length-label"
-      >Cable Length <input type="text" class="cable-length"
-   /></label>
+   <fieldset class="outer-group form-container">
+      <legend> Installation/Circuit Details </legend>
+
+      <fieldset class="inner-group">
+         <div class="form-input">
+            <input
+               type="radio"
+               id="230V"
+               name="230V"
+               class="form-radio"
+               checked="checked"
+            />
+            <label for="230V">Single Phase (230V)</label>
+         </div>
+         <br />
+         <div class="form-input">
+            <input
+               type="radio"
+               id="400V"
+               name="400V"
+               class="form-radio"
+            />
+            <label for="400V">Three Phase (400V)</label>
+         </div>
+      </fieldset>
+      <fieldset class="inner-group">
+         <label for="zdb"
+            >Earth Loop Impedance at Protective
+            Device</label
+         >
+         <input
+            type="number"
+            list="load-current"
+            class="form-input"
+         />Amps
+         <datalist id="load-current" class="form-datalist">
+         </datalist>
+      </fieldset>
+      <fieldset class="inner-group">
+         <label for="ocpd-current"
+            >Protective Device Current Rating</label
+         >
+         <input
+            type="number"
+            list="ocpd-current"
+            class="form-input"
+         />Amps
+         <datalist id="ocpd-current" class="form-datalist">
+            <option value="6" class="datalist-option"
+               >6</option
+            >
+            <option value="10" class="datalist-option"
+               >10</option
+            >
+            <option value="16" class="datalist-option"
+               >16</option
+            >
+            <option value="20" class="datalist-option"
+               >20</option
+            >
+            <option value="32" class="datalist-option"
+               >32</option
+            >
+            <option value="40" class="datalist-option"
+               >40</option
+            >
+         </datalist>
+      </fieldset>
+      <fieldset class="inner-group">
+         <label for="load-current">Expected Load</label>
+         <input
+            type="number"
+            list="load-current"
+            class="form-input"
+         />Amps
+         <datalist id="load-current" class="form-datalist">
+         </datalist>
+      </fieldset>
+   </fieldset>
+   <input
+      type="submit"
+      value="Calculate"
+      class="form-container form-button form-primary"
+   />
+   <input
+      type="reset"
+      value="Reset"
+      class="form-container form-button"
+   />
 </form>
+
+<style>
+   :root {
+      --form-font-size: var(--app-font-size);
+      --form-border-radius: var(--app-border-radius);
+      --form-color-primary: var(--app-color-primary);
+      --form-color-secondary: var(--app-color-secondary);
+      --form-color-background: var(--app-color-background);
+      --form-color-text: var(--app-color-text);
+   }
+
+   .form-container {
+      border: 3px solid var(--form-color-primary);
+      border-radius: var(--form-border-radius);
+      background-color: var(--form-color-background);
+   }
+
+   .cable-info-form .inner-group {
+      border: none;
+      margin: 0;
+
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+   }
+   .cable-info-form .inner-group > label {
+      width: 100%;
+   }
+
+   .cable-info-form {
+      font-size: var(--form-font-size);
+
+      margin: 0 auto 0 auto;
+   }
+
+   .form-select,
+   .form-input,
+   .datalist-option {
+      padding: 0.25rem;
+      margin: 1rem 0.25rem;
+      font-size: var(--form-font-size);
+      flex-grow: 2;
+   }
+
+   .form-button {
+      -webkit-appearance: none;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1rem;
+   }
+
+   .form-primary {
+      background-color: var(--form-color-secondary);
+      width: 90%;
+      color: white;
+      font-size: larger;
+      font-weight: bold;
+      padding: 2rem;
+   }
+
+   @media screen and (min-width: 40em) {
+      :root {
+         --form-font-size: 1.5rem;
+      }
+
+      .cable-info-form .outer-group {
+         margin: 1rem;
+      }
+
+      .cable-info-form .inner-group {
+         margin: 2rem;
+         flex-wrap: nowrap;
+      }
+
+      .cable-info-form .inner-group > label {
+         width: auto;
+      }
+
+      .cable-info-form {
+         font-size: var(--form-font-size);
+         width: max-content;
+         margin: 0 auto 0 auto;
+      }
+
+      .form-select,
+      .form-input,
+      .datalist-option {
+         padding: 1rem;
+         margin: 1rem;
+      }
+   }
+</style>
 `

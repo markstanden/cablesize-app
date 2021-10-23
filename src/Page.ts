@@ -6,6 +6,7 @@ export class Page implements PageContent {
    constructor(html: any) {
       this._html = html;
    }
+   
    render() {
       return this._html;
    }

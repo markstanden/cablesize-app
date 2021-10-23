@@ -1,9 +1,25 @@
 export default `
-<footer class="footerbar">Links</footer>
+<footer class="footerbar"><h2 class="footer-title">Links</h2></footer>
 <style>
    .footerbar {
+      margin: 0;
+      padding: 0;
       margin-top: 2rem;
-      width: 100%;
    }
+
+   .footer-title {
+      margin: 0;
+      padding: 0;
+      color: var(--app-color-primary);
+      border-top: 3px solid var(--app-color-secondary);
+      text-align: center;
+   }
+
+   @media screen and (min-width: 40em) {
+      .footer-title {
+         text-align: left;
+      }
+   }
+</style>
 </style>
 `

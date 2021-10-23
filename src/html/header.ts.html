@@ -1,11 +1,26 @@
 export default `
 <header class="headerbar">
-   <h1>Cable Sizing Calculator</h1>
+   <h1 class="title">Cablesizer</h1>
 </header>
 <style>
    .headerbar {
-      width: 100%;
-      margin-bottom: 2rem;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 1rem;
+   }
+
+   .title {
+      margin: 0;
+      padding: 0;
+      color: var(--app-color-primary);
+      border-bottom: 3px solid var(--app-color-secondary);
+      text-align: center;
+   }
+
+   @media screen and (min-width: 40em) {
+      .title {
+         text-align: left;
+      }
    }
 </style>
 `
