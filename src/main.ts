@@ -8,22 +8,25 @@ form.addEventListener("submit", e => onFormSubmit(e), {
    once: false,
 });
 
-async function onFormSubmit(event: Event): Promise<void> {
+async function onFormSubmit(
+   event: SubmitEvent,
+): Promise<void> {
    event.preventDefault();
    const mainContent =
       document.querySelector<HTMLDivElement>(
          "#main-content",
       )!;
 
+   event;
+   var params = { lat: 35.696233, long: 139.570431 }; // or:
+
+   url.search = new URLSearchParams(params).toString();
+
+   fetch(url);
+
    const response = await fetch(
-      "./netlify/functions/hello",
-   ).then(async res => {
-      console.log(res.body);
+      "/.netlify/functions/calc",
+   ).then(res => res.json());
 
-      console.log(await res.json());
-   });
-
-   mainContent.innerHTML = `
-      <div style="font-size:5rem">${response}</div>
-   `;
+   mainContent.innerHTML = response.message;
 }
