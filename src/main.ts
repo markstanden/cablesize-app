@@ -17,12 +17,12 @@ async function onFormSubmit(
          "#main-content",
       )!;
 
-   event;
+ /*   event;
    var params = { lat: 35.696233, long: 139.570431 }; // or:
 
    url.search = new URLSearchParams(params).toString();
 
-   fetch(url);
+   fetch(url); */
 
    const response = await fetch(
       "/.netlify/functions/calc",
