@@ -138,6 +138,9 @@ export namespace SWA70 {
       300: 316,
    };
 
+   /** Volt drop of the cable (in mV/A/m) for each CSA (in mm2)
+    * [Key: Cross-sectional Surface Area]: Volt Drop per ampere, per metre;
+    * All values from Table 4D4B BS7671 Column 3 (Voltage Drop) */
    export const voltDrop_SP: VoltDrop = {
       1.5: 29,
       2.5: 18,
@@ -158,6 +161,9 @@ export namespace SWA70 {
       400: 0.185,
    };
 
+   /** Volt drop of the cable (in mV/A/m) for each CSA (in mm2)
+    * [Key: Cross-sectional Surface Area]: Volt Drop per ampere, per metre;
+    * All values from Table 4D4B BS7671 Column 4 (Voltage Drop) */
    export const voltDrop_TP: VoltDrop = {
       1.5: 25,
       2.5: 15,
