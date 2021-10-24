@@ -1,6 +1,6 @@
-import { CableFormData } from "./../types/cableFormData";
+import { CableFormData } from "../types/cable-form-data";
 
-export class CableData {
+export class InstallationData {
    private _cableType: string;
    private _length: number;
    private _nominalVoltage: number;
@@ -15,5 +15,29 @@ export class CableData {
       this._zdb = data["zdb"] || 0.35;
       this._ocpdCurrent = data["ocpd-current"] || 0;
       this._loadCurrent = data["load-current"] || 0;
+   }
+
+   get cableType(): string {
+      return this._cableType;
+   }
+
+   get length(): number {
+      return this._length;
+   }
+
+   get nominalVoltage(): number {
+      return this._nominalVoltage;
+   }
+
+   get zdb(): number {
+      return this._zdb;
+   }
+
+   get ocpdCurrent(): number {
+      return this._ocpdCurrent;
+   }
+
+   get loadCurrent(): number {
+      return this._loadCurrent;
    }
 }

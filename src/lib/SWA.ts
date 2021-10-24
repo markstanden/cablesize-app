@@ -1,12 +1,15 @@
+import { VoltDrop } from "./../types/VoltDrop";
 import { Cable } from "./Cable";
-export class SWA extends Cable {
+export abstract class SWA extends Cable {
    constructor(
       currentCarryingCapacity: number,
-      CrossSectionalSurfaceArea: number,
+      crossSectionalSurfaceArea: number,
+      voltdrop: VoltDrop,
    ) {
       super(
          currentCarryingCapacity,
-         CrossSectionalSurfaceArea,
+         crossSectionalSurfaceArea,
+         voltdrop,
       );
    }
 }

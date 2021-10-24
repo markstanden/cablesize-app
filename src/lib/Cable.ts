@@ -1,6 +1,8 @@
-export class Cable {
+import { VoltDrop } from "./../types/VoltDrop";
+export abstract class Cable {
    constructor(
       protected _currentCarryingCapacity: number,
-      protected _CrossSectionalSurfaceArea: number,
+      protected _crossSectionalSurfaceArea: number,
+      protected _voltDrop: VoltDrop,
    ) {}
 }

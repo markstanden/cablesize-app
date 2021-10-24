@@ -1,5 +1,5 @@
-import { CableData } from "./../../src/lib/CableData";
-import { CableFormData } from "./../../src/types/cableFormData";
+import { InstallationData } from "../../src/lib/InstallationData";
+import { CableFormData } from "../../src/types/cable-form-data";
 import { Handler } from "@netlify/functions";
 
 export type HTMLFormObject = {
@@ -10,10 +10,9 @@ const handler: Handler = async (event, context) => {
    /* Get the seach params */
    const searchParams = new URLSearchParams(event.body);
    const paramsAsObj = paramsToObject(searchParams);
-   const cableData: CableFormData = new CableData(
-      paramsAsObj,
-   );
+   const installation = new InstallationData(paramsAsObj);
 
+   console.log(installation.cableType);
    /*
       We need to check the minimum size cable for volt drop,
       the minimum size for Zs, and the minimum size for current carrying capacity.
