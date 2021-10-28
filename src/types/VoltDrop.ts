@@ -1,2 +1,2 @@
 import { CSAValues } from "./csa-values";
-export type VoltDrop = CSAValues;
+export type VoltDropTable = CSAValues;

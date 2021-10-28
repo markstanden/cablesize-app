@@ -1,11 +1,11 @@
-import { CurrentCarryingCapacity } from "../../types/CurrentCarryingCapacity";
-import { VoltDrop } from "../../types/VoltDrop";
+import { CurrentCarryingCapacityTable } from "../../types/CurrentCarryingCapacityTable";
+import { VoltDropTable } from "../../types/VoltDrop";
 
 export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D5 BS7671 Column 2 (Ref 100, Single Phase) */
-   export const ccc_ref100: CurrentCarryingCapacity = {
+   export const ccc_ref100: CurrentCarryingCapacityTable = {
       1: 13,
       1.5: 16,
       2.5: 21,
@@ -18,7 +18,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D5 BS7671 Column 3 (Ref 101, Single Phase) */
-   export const ccc_ref101: CurrentCarryingCapacity = {
+   export const ccc_ref101: CurrentCarryingCapacityTable = {
       1: 10.5,
       1.5: 13,
       2.5: 17,
@@ -31,7 +31,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D5 BS7671 Column 4 (Ref 102, Single Phase) */
-   export const ccc_ref102: CurrentCarryingCapacity = {
+   export const ccc_ref102: CurrentCarryingCapacityTable = {
       1: 13,
       1.5: 16,
       2.5: 21,
@@ -44,7 +44,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D5 BS7671 Column 5 (Ref 103, Single Phase) */
-   export const ccc_ref103: CurrentCarryingCapacity = {
+   export const ccc_ref103: CurrentCarryingCapacityTable = {
       1: 8,
       1.5: 10,
       2.5: 13.5,
@@ -57,7 +57,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D5 BS7671 Column 6 (Ref C, Single Phase) */
-   export const ccc_refC: CurrentCarryingCapacity = {
+   export const ccc_refC: CurrentCarryingCapacityTable = {
       1: 16,
       1.5: 20,
       2.5: 27,
@@ -70,7 +70,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D5 BS7671 Column 7 (Ref A, Single Phase) */
-   export const ccc_refA: CurrentCarryingCapacity = {
+   export const ccc_refA: CurrentCarryingCapacityTable = {
       1: 11.5,
       1.5: 14.5,
       2.5: 20,
@@ -83,7 +83,7 @@ export namespace Flat70 {
    /** Volt drop of the cable (in mV/A/m) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]: Volt Drop per ampere, per metre;
     * All values from Table 4D5 BS7671 Column 8 (Voltage Drop) */
-   export const voltDrop: VoltDrop = {
+   export const voltDrop: VoltDropTable = {
       1: 44,
       1.5: 29,
       2.5: 18,
