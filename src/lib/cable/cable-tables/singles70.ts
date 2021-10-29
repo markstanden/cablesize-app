@@ -1,10 +1,10 @@
-import { CurrentCarryingCapacityTable } from "../../types/CurrentCarryingCapacityTable";
+import { CSAValues } from "./../../types/csa-values";
 
 export namespace Singles70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D1A BS7671 Column 2 (Ref A, Single Phase) */
-   export const ccc_refA_SP: CurrentCarryingCapacityTable = {
+   export const ccc_refA_SP: CSAValues = {
       1: 11,
       1.5: 14.5,
       2.5: 20,
@@ -27,7 +27,7 @@ export namespace Singles70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D1A BS7671 Column 3 (Ref A, Three Phase) */
-   export const ccc_refA_TP: CurrentCarryingCapacityTable = {
+   export const ccc_refA_TP: CSAValues = {
       1: 10.5,
       1.5: 13.5,
       2.5: 18,
@@ -50,7 +50,7 @@ export namespace Singles70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D1A BS7671 Column 4 (Ref B, Single Phase) */
-   export const ccc_refB_SP: CurrentCarryingCapacityTable = {
+   export const ccc_refB_SP: CSAValues = {
       1: 13.5,
       1.5: 17.5,
       2.5: 24,
@@ -76,7 +76,7 @@ export namespace Singles70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
     * All values from Table 4D1A BS7671 Column 5 (Ref B, Three Phase) */
-   export const ccc_refB_TP: CurrentCarryingCapacityTable = {
+   export const ccc_refB_TP: CSAValues = {
       1: 12,
       1.5: 15.5,
       2.5: 21,
