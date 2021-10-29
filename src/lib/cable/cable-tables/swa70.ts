@@ -65,7 +65,7 @@ export class SWA70CableTables implements CableTableClass {
    }
 
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
+    * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D4A BS7671 Column 2 (Ref C, Single Phase) */
    private readonly ccc_refC_SP: CSARecord[] = [
       [1.5, 21],
@@ -88,7 +88,7 @@ export class SWA70CableTables implements CableTableClass {
    ];
 
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
+    * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D4A BS7671 Column 3 (Ref C, Three Phase) */
    private readonly ccc_refC_TP: CSARecord[] = [
       [1.5, 18],
@@ -111,7 +111,7 @@ export class SWA70CableTables implements CableTableClass {
    ];
 
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
+    * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D4A BS7671 Column 4 (Ref E, Single Phase) */
    private readonly ccc_refE_SP: CSARecord[] = [
       [1.5, 22],
@@ -134,7 +134,7 @@ export class SWA70CableTables implements CableTableClass {
    ];
 
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
+    * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D4A BS7671 Column 5 (Ref E, Three Phase) */
    private readonly ccc_refE_TP: CSARecord[] = [
       [1.5, 19],
@@ -156,7 +156,7 @@ export class SWA70CableTables implements CableTableClass {
       [400, 590],
    ];
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
+    * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D4A BS7671 Column 6 (Ref D, Single Phase) */
    private readonly ccc_refD_SP: CSARecord[] = [
       [1.5, 22],
@@ -178,70 +178,70 @@ export class SWA70CableTables implements CableTableClass {
    ];
 
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]:Current Carrying Capacity;
+    * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D4A BS7671 Column 7 (Ref D, Three Phase) */
-   private readonly ccc_refD_TP: CSARecord[] = {
-      1.5: 18,
-      2.5: 24,
-      4: 30,
-      6: 38,
-      10: 50,
-      16: 64,
-      25: 82,
-      35: 98,
-      50: 116,
-      70: 143,
-      95: 169,
-      120: 192,
-      150: 217,
-      185: 243,
-      240: 280,
-      300: 316,
-   };
+   private readonly ccc_refD_TP: CSARecord[] = [
+      [1.5, 18],
+      [2.5, 24],
+      [4, 30],
+      [6, 38],
+      [10, 50],
+      [16, 64],
+      [25, 82],
+      [35, 98],
+      [50, 116],
+      [70, 143],
+      [95, 169],
+      [120, 192],
+      [150, 217],
+      [185, 243],
+      [240, 280],
+      [300, 316],
+   ];
 
    /** Volt drop of the cable (in mV/A/m) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]: Volt Drop per ampere, per metre;
+    * [Key: Cross-sectional Surface Area, Value:Volt Drop per ampere, per metre];
     * All values from Table 4D4B BS7671 Column 3 (Voltage Drop) */
-   private readonly voltDrop_SP: CSARecord[] = {
-      1.5: 29,
-      2.5: 18,
-      4: 11,
-      6: 7.3,
-      10: 4.4,
-      16: 2.8,
-      25: 1.75,
-      35: 1.25,
-      50: 0.94,
-      70: 0.65,
-      95: 0.5,
-      120: 0.41,
-      150: 0.34,
-      185: 0.29,
-      240: 0.24,
-      300: 0.21,
-      400: 0.185,
-   };
+   private readonly voltDrop_SP: CSARecord[] = [
+      [1.5, 29],
+      [2.5, 18],
+      [4, 11],
+      [6, 7.3],
+      [10, 4.4],
+      [16, 2.8],
+      [25, 1.75],
+      [35, 1.25],
+      [50, 0.94],
+      [70, 0.65],
+      [95, 0.5],
+      [120, 0.41],
+      [150, 0.34],
+      [185, 0.29],
+      [240, 0.24],
+      [300, 0.21],
+      [400, 0.185],
+   ];
 
    /** Volt drop of the cable (in mV/A/m) for each CSA (in mm2)
-    * [Key: Cross-sectional Surface Area]: Volt Drop per ampere, per metre;
+    * [Key: Cross-sectional Surface Area, Value:Volt Drop per ampere, per metre];
     * All values from Table 4D4B BS7671 Column 4 (Voltage Drop) */
-   private readonly voltDrop_TP: CSARecord[] = {
-      1.5: 25,
-      2.5: 15,
-      4: 9.5,
-      6: 6.4,
-      10: 3.8,
-      16: 2.4,
-      25: 1.5,
-      35: 1.1,
-      50: 0.81,
-      70: 0.57,
-      95: 0.43,
-      120: 0.35,
-      150: 0.29,
-      185: 0.25,
-      240: 0.21,
-      300: 0.185,
-      400: 0.16,
-   };
+   private readonly voltDrop_TP: CSARecord[] = [
+      [1.5, 25],
+      [2.5, 15],
+      [4, 9.5],
+      [6, 6.4],
+      [10, 3.8],
+      [16, 2.4],
+      [25, 1.5],
+      [35, 1.1],
+      [50, 0.81],
+      [70, 0.57],
+      [95, 0.43],
+      [120, 0.35],
+      [150, 0.29],
+      [185, 0.25],
+      [240, 0.21],
+      [300, 0.185],
+      [400, 0.16],
+   ];
 }
