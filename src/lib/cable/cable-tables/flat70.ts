@@ -1,10 +1,60 @@
+import { NOMINAL_VOLTAGE } from "./../../types/NominalVoltage";
+import { REF_METHODS } from "./../../types/RefMethods";
+import { CableTableClass } from "../BS7671-tables/cable-tables";
 import { CSARecord } from "./../../types/csa-record";
 
-export namespace Flat70 {
+export class Flat70CableTables implements CableTableClass {
+   public getCCCTable(
+      nominalVoltage: NOMINAL_VOLTAGE,
+      refMethod: keyof typeof REF_METHODS,
+   ): CSARecord[] | null {
+      switch (nominalVoltage) {
+         case "230V":
+            switch (refMethod) {
+               case "A":
+                  return this.ccc_refA;
+               case "C":
+                  return this.ccc_refC;
+               case "100":
+                  return this.ccc_ref100;
+               case "101":
+                  return this.ccc_ref101;
+               case "102":
+                  return this.ccc_ref102;
+               case "103":
+                  return this.ccc_ref103;
+               default:
+                  return null;
+            }
+         case "400V":
+         default:
+            return null;
+      }
+   }
+
+   public getVDTable(
+      nominalVoltage: NOMINAL_VOLTAGE,
+      refMethod: keyof typeof REF_METHODS,
+   ): CSARecord[] | null {
+      switch (nominalVoltage) {
+         case "230V":
+            switch (refMethod) {
+               case "C":
+               case "D":
+               case "EF":
+                  return this.voltDrop;
+               default:
+                  return null;
+            }
+         case "400V":
+         default:
+            return null;
+      }
+   }
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D5 BS7671 Column 2 (Ref 100, Single Phase) */
-   export const ccc_ref100: CSARecord[] = [
+   private readonly ccc_ref100: CSARecord[] = [
       [1, 13],
       [1.5, 16],
       [2.5, 21],
@@ -17,7 +67,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D5 BS7671 Column 3 (Ref 101, Single Phase) */
-   export const ccc_ref101: CSARecord[] = [
+   private readonly ccc_ref101: CSARecord[] = [
       [1, 10.5],
       [1.5, 13],
       [2.5, 17],
@@ -30,7 +80,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D5 BS7671 Column 4 (Ref 102, Single Phase) */
-   export const ccc_ref102: CSARecord[] = [
+   private readonly ccc_ref102: CSARecord[] = [
       [1, 13],
       [1.5, 16],
       [2.5, 21],
@@ -43,7 +93,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D5 BS7671 Column 5 (Ref 103, Single Phase) */
-   export const ccc_ref103: CSARecord[] = [
+   private readonly ccc_ref103: CSARecord[] = [
       [1, 8],
       [1.5, 10],
       [2.5, 13.5],
@@ -56,7 +106,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D5 BS7671 Column 6 (Ref C, Single Phase) */
-   export const ccc_refC: CSARecord[] = [
+   private readonly ccc_refC: CSARecord[] = [
       [1, 16],
       [1.5, 20],
       [2.5, 27],
@@ -69,7 +119,7 @@ export namespace Flat70 {
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Current Carrying Capacity];
     * All values from Table 4D5 BS7671 Column 7 (Ref A, Single Phase) */
-   export const ccc_refA: CSARecord[] = [
+   private readonly ccc_refA: CSARecord[] = [
       [1, 11.5],
       [1.5, 14.5],
       [2.5, 20],
@@ -82,7 +132,7 @@ export namespace Flat70 {
    /** Volt drop of the cable (in mV/A/m) for each CSA (in mm2)
     * [Key: Cross-sectional Surface Area, Value:Volt Drop per ampere, per metre];
     * All values from Table 4D5 BS7671 Column 8 (Voltage Drop) */
-   export const voltDrop: CSARecord[] = [
+   private readonly voltDrop: CSARecord[] = [
       [1, 44],
       [1.5, 29],
       [2.5, 18],

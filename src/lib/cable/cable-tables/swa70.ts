@@ -15,7 +15,7 @@ export class SWA70CableTables implements CableTableClass {
                   return this.ccc_refC_SP;
                case "D":
                   return this.ccc_refD_SP;
-               case "E":
+               case "EF":
                   return this.ccc_refE_SP;
                default:
                   return null;
@@ -26,7 +26,7 @@ export class SWA70CableTables implements CableTableClass {
                   return this.ccc_refC_TP;
                case "D":
                   return this.ccc_refD_TP;
-               case "E":
+               case "EF":
                   return this.ccc_refE_TP;
                default:
                   return null;
@@ -45,7 +45,7 @@ export class SWA70CableTables implements CableTableClass {
             switch (refMethod) {
                case "C":
                case "D":
-               case "E":
+               case "EF":
                   return this.voltDrop_SP;
                default:
                   return null;
@@ -54,7 +54,7 @@ export class SWA70CableTables implements CableTableClass {
             switch (refMethod) {
                case "C":
                case "D":
-               case "E":
+               case "EF":
                   return this.voltDrop_TP;
                default:
                   return null;

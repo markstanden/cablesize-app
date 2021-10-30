@@ -3,7 +3,7 @@ import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
 import { REF_METHODS } from "../../types/RefMethods";
 import { CableTableClass } from "../cable-tables/cable-tables";
 
-export abstract class CableCreator {
+export class CableCreator {
    protected readonly cccValues: CSARecord[];
    protected readonly vdValues: CSARecord[];
 
@@ -29,5 +29,22 @@ export abstract class CableCreator {
 
       this.cccValues = cccTable;
       this.vdValues = vdTable;
+   }
+
+   public getCurrentCarryingCapacity(csa: number) {
+      return this.getValue(this.cccValues, csa);
+   }
+   public getVoltDrop(csa: number) {
+      return this.getValue(this.vdValues, csa);
+   }
+
+   private getValue(table: CSARecord[], csa: number) {
+      const output = table.map(record => {
+         if (record[0] == csa) {
+            return record[1];
+         } else return;
+      });
+      console.log(output);
+      return output[0] || null;
    }
 }

@@ -3,7 +3,7 @@ export const REF_METHODS = {
    "B": "enclosed",
    "C": "clipped",
    "D": "buried",
-   "E": "tray",
+   "EF": "tray",
    "100": "ceiling-not-thermal",
    "101": "ceiling-thermal",
    "102": "wall-thermal-touching",
