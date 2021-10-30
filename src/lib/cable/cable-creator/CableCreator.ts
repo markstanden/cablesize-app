@@ -34,17 +34,16 @@ export class CableCreator {
    public getCurrentCarryingCapacity(csa: number) {
       return this.getValue(this.cccValues, csa);
    }
+
    public getVoltDrop(csa: number) {
       return this.getValue(this.vdValues, csa);
    }
 
    private getValue(table: CSARecord[], csa: number) {
-      const output = table.map(record => {
-         if (record[0] == csa) {
-            return record[1];
-         } else return;
+      console.log(table);
+      const output = table.filter(record => {
+         return record[0] == csa;
       });
-      console.log(output);
-      return output[0] || null;
+      return output;
    }
 }

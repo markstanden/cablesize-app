@@ -1,6 +1,6 @@
 import { NOMINAL_VOLTAGE } from "./../../types/NominalVoltage";
 import { REF_METHODS } from "./../../types/RefMethods";
-import { CableTableClass } from "../BS7671-tables/cable-tables";
+import { CableTableClass } from "./cable-tables";
 import { CSARecord } from "./../../types/csa-record";
 
 export class Flat70CableTables implements CableTableClass {

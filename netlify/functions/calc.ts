@@ -1,12 +1,10 @@
+import { SWA70CableTables } from "./../../src/lib/cable/cable-tables/swa70";
 import { Singles70CableTables } from "./../../src/lib/cable/cable-tables/singles70";
 import { Flat70CableTables } from "./../../src/lib/cable/cable-tables/flat70";
-import { SWA70CableTables } from "./../../src/lib/cable/BS7671-tables/swa70";
-import { Flat70CableCreator } from "./../../src/lib/cable/cable-creator/Flat70-cable-creator";
-import { SWA70CableCreator } from "./../../src/lib/cable/cable-creator/SWA70-cable-creator";
 import { InstallationData } from "./../../src/lib/installation/InstallationData";
 import { Handler } from "@netlify/functions";
 import { CableCreator } from "../../src/lib/cable/cable-creator/CableCreator";
-import { CableTableClass } from "../../src/lib/cable/BS7671-tables/cable-tables";
+import { CableTableClass } from "../../src/lib/cable/cable-tables/cable-tables";
 
 export type HTMLFormObject = {
    [key: string]: FormDataEntryValue;
@@ -19,7 +17,7 @@ const handler: Handler = async (event, context) => {
    const installation = new InstallationData(paramsAsObj);
 
    const cableCreator = getCableCreator(installation);
-
+   console.log(installation);
    console.log(cableCreator.getCurrentCarryingCapacity(10));
    /*
       We need to check the minimum size cable for volt drop,
