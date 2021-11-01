@@ -3,7 +3,9 @@ import { REF_METHODS } from "../../types/RefMethods";
 import { CableTableTemplate } from "./cable-table-template";
 import { CSARecord } from "../../types/csa-record";
 
-export class Flat70CableTables implements CableTableTemplate {
+export class Flat70CableTables
+   implements CableTableTemplate
+{
    public getCCCTable(
       nominalVoltage: NOMINAL_VOLTAGE,
       refMethod: keyof typeof REF_METHODS,
@@ -14,6 +16,7 @@ export class Flat70CableTables implements CableTableTemplate {
                case "A":
                   return this.ccc_refA;
                case "C":
+               case "EF":
                   return this.ccc_refC;
                case "100":
                   return this.ccc_ref100;
@@ -39,9 +42,13 @@ export class Flat70CableTables implements CableTableTemplate {
       switch (nominalVoltage) {
          case "230V":
             switch (refMethod) {
+               case "A":
                case "C":
-               case "D":
                case "EF":
+               case "100":
+               case "101":
+               case "102":
+               case "103":
                   return this.voltDrop;
                default:
                   return null;

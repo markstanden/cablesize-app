@@ -11,19 +11,12 @@ export class CableTableStore implements CableTableStorage {
    constructor(
       refMethod: keyof typeof REF_METHODS,
       nominalVoltage: NOMINAL_VOLTAGE,
-      cableTableClass: CableTableTemplate,
+      cableTable: CableTableTemplate,
    ) {
       const cccTable: CableTable | null =
-         cableTableClass.getCCCTable(
-            nominalVoltage,
-            refMethod,
-         );
+         cableTable.getCCCTable(nominalVoltage, refMethod);
       const vdTable: CableTable | null =
-         cableTableClass.getVDTable(
-            nominalVoltage,
-            refMethod,
-         );
-
+         cableTable.getVDTable(nominalVoltage, refMethod);
       if (cccTable == null || vdTable == null) {
          throw new Error("Invalid Reference Method");
       }
