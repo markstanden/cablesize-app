@@ -1,14 +1,8 @@
-import { SWA70CableTables } from "./../../src/lib/cable/cable-tables/swa70";
-import { Singles70CableTables } from "./../../src/lib/cable/cable-tables/singles70";
-import { Flat70CableTables } from "./../../src/lib/cable/cable-tables/flat70";
-import { InstallationData } from "./../../src/lib/installation/InstallationData";
-import { Handler } from "@netlify/functions";
-import { CableCreator } from "../../src/lib/cable/cable-creator/CableCreator";
-import { CableTableClass } from "../../src/lib/cable/cable-tables/cable-tables";
+import { InstallationData } from './../../src/app/lib/installation/InstallationData';
 
-export type HTMLFormObject = {
-   [key: string]: FormDataEntryValue;
-};
+import { Handler } from "@netlify/functions";
+import { paramsToObject } from "../../src/app/lib/netlify";
+
 
 const handler: Handler = async (event, context) => {
    /* Get the seach params */
@@ -17,7 +11,6 @@ const handler: Handler = async (event, context) => {
    const installation = new InstallationData(paramsAsObj);
 
    const cableCreator = getCableCreator(installation);
-   console.log(installation);
    console.log(cableCreator.getCurrentCarryingCapacity(10));
    /*
       We need to check the minimum size cable for volt drop,
@@ -33,37 +26,5 @@ const handler: Handler = async (event, context) => {
    };
 };
 
-function paramsToObject(
-   entries: URLSearchParams,
-): HTMLFormObject {
-   const result = {};
-   for (const [key, value] of entries) {
-      result[key] = value;
-   }
-   return result;
-}
-
-function getCableCreator(installation: InstallationData) {
-   let cableTables: CableTableClass;
-   switch (installation.cableType) {
-      case "swa70":
-         cableTables = new SWA70CableTables();
-         break;
-      case "flat70":
-         cableTables = new Flat70CableTables();
-         break;
-      case "singles70":
-         cableTables = new Singles70CableTables();
-         break;
-
-      default:
-         throw new Error("Invalid Cable Type");
-   }
-   return new CableCreator(
-      installation.refMethod,
-      installation.nominalVoltage,
-      cableTables,
-   );
-}
 
 export { handler };

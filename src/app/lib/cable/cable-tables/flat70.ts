@@ -1,9 +1,9 @@
-import { NOMINAL_VOLTAGE } from "./../../types/NominalVoltage";
-import { REF_METHODS } from "./../../types/RefMethods";
-import { CableTableClass } from "./cable-tables";
-import { CSARecord } from "./../../types/csa-record";
+import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
+import { REF_METHODS } from "../../types/RefMethods";
+import { CableTableTemplate } from "./cable-table-template";
+import { CSARecord } from "../../types/csa-record";
 
-export class Flat70CableTables implements CableTableClass {
+export class Flat70CableTables implements CableTableTemplate {
    public getCCCTable(
       nominalVoltage: NOMINAL_VOLTAGE,
       refMethod: keyof typeof REF_METHODS,

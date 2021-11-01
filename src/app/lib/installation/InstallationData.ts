@@ -1,6 +1,6 @@
-import { NOMINAL_VOLTAGE } from "./../types/NominalVoltage";
-import { REF_METHODS } from "./../types/RefMethods";
-import { CableType } from "./../types/cable-type";
+import { NOMINAL_VOLTAGE } from "../types/NominalVoltage";
+import { REF_METHODS } from "../types/RefMethods";
+import { CableType } from "../types/cable-type";
 import { CableFormData } from "../types/cable-form-data";
 
 export class InstallationData {
