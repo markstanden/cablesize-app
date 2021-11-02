@@ -1,4 +1,4 @@
-import { HTMLFormObject } from "./../types/cable-form-object";
+import { HTMLFormObject } from "../types/cable-form-object";
 export function paramsToObject(
    entries: URLSearchParams,
 ): HTMLFormObject {

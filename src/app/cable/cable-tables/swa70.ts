@@ -1,13 +1,17 @@
+import { errorInvalidRefMethodForCableType } from "./../../errors/cable-table-errors";
+import { CableTable } from "./../../types/cable-table";
 import { CSARecord } from "../../types/csa-record";
 import { REF_METHODS } from "../../types/RefMethods";
 import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
 import { CableTableTemplate } from "./cable-table-template";
 
-export class SWA70CableTables implements CableTableTemplate {
+export class SWA70CableTables
+   implements CableTableTemplate
+{
    public getCCCTable(
       nominalVoltage: NOMINAL_VOLTAGE,
       refMethod: keyof typeof REF_METHODS,
-   ): CSARecord[] | null {
+   ): CableTable {
       switch (nominalVoltage) {
          case "230V":
             switch (refMethod) {
@@ -18,7 +22,7 @@ export class SWA70CableTables implements CableTableTemplate {
                case "EF":
                   return this.ccc_refE_SP;
                default:
-                  return null;
+                  throw errorInvalidRefMethodForCableType;
             }
          case "400V":
             switch (refMethod) {
@@ -29,17 +33,17 @@ export class SWA70CableTables implements CableTableTemplate {
                case "EF":
                   return this.ccc_refE_TP;
                default:
-                  return null;
+                  throw errorInvalidRefMethodForCableType;
             }
          default:
-            return null;
+            throw errorInvalidRefMethodForCableType;
       }
    }
 
    public getVDTable(
       nominalVoltage: NOMINAL_VOLTAGE,
       refMethod: keyof typeof REF_METHODS,
-   ): CSARecord[] | null {
+   ): CableTable {
       switch (nominalVoltage) {
          case "230V":
             switch (refMethod) {
@@ -48,7 +52,7 @@ export class SWA70CableTables implements CableTableTemplate {
                case "EF":
                   return this.voltDrop_SP;
                default:
-                  return null;
+                  throw errorInvalidRefMethodForCableType;
             }
          case "400V":
             switch (refMethod) {
@@ -57,10 +61,10 @@ export class SWA70CableTables implements CableTableTemplate {
                case "EF":
                   return this.voltDrop_TP;
                default:
-                  return null;
+                  throw errorInvalidRefMethodForCableType;
             }
          default:
-            return null;
+            throw errorInvalidRefMethodForCableType;
       }
    }
 
