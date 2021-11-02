@@ -8,7 +8,12 @@ describe("installationData Tests", () => {
       //runs before each test
    });
 
-   test("Check non zero defaults are present", () => {
+   test.todo(
+      "Check supplied fields are set to instance variables correctly.",
+      () => {},
+   );
+
+   test("Check non zero defaults are present for empty fields", () => {
       const data = new InstallationData({});
       expect(data.cableType).not.toBeFalsy();
       expect(data.length).not.toBeFalsy();
@@ -18,4 +23,9 @@ describe("installationData Tests", () => {
       expect(data.refMethod).not.toBeFalsy();
       expect(data.zdb).not.toBeFalsy();
    });
+
+   test.todo(
+      "Test invalid form data throws error",
+      () => {},
+   );
 });
