@@ -14,4 +14,7 @@ module.exports = {
       "node",
    ],
    verbose: true,
+   collectCoverage: true,
+   collectCoverageFrom: ["<rootDir>/src/app/**/*.ts*"],
 };
+git
