@@ -1,7 +1,7 @@
-import { CurrentCarryingCapacity } from "./../../src/app/lib/cable/ccc";
-import { CableTableCreator } from "./../../src/app/lib/cable/cable-tables/cable-table-creator";
-import { InstallationData } from "./../../src/app/lib/installation/InstallationData";
-import { paramsToObject } from "../../src/app/lib/form/params-to-object";
+import { CurrentCarryingCapacity } from "./../../src/app/cable/ccc";
+import { CableTableCreator } from "./../../src/app/cable/cable-tables/cable-table-creator";
+import { InstallationData } from "../../src/app/installation/installation-data";
+import { paramsToObject } from "../../src/app/form/params-to-object";
 
 import { Handler } from "@netlify/functions";
 
@@ -29,7 +29,9 @@ const handler: Handler = async (event, context) => {
    return {
       statusCode: 200,
       body: JSON.stringify({
-         message: `Minimum CSA for ${installation.ocpdCurrent}A breaker: ${minForOCPD}mm`,
+         message: `
+         Minimum CSA for ${installation.ocpdCurrent}A breaker: ${minForOCPD}mm
+         `,
       }),
    };
 };

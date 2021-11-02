@@ -15,12 +15,12 @@ export class InstallationData {
    constructor(data: CableFormData) {
       this._cableType = data["cable-type"] || "singles70";
       this._refMethod = data["installation-method"] || "C";
-      this._length = data["length"] || 0;
+      this._length = data["length"] || 2;
       this._nominalVoltage =
          data["nominal-voltage"] || "230V";
       this._zdb = data["zdb"] || 0.35;
-      this._ocpdCurrent = data["ocpd-current"] || 0;
-      this._loadCurrent = data["load-current"] || 0;
+      this._ocpdCurrent = data["ocpd-current"] || 63;
+      this._loadCurrent = data["load-current"] || 63;
    }
 
    get cableType(): keyof CableType {

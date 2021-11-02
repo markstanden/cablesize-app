@@ -1,5 +1,5 @@
 import { CableTableStore } from "./cable-table-store";
-import { InstallationData } from "../../installation/InstallationData";
+import { InstallationData } from "../../installation/installation-data";
 import { Singles70CableTables } from "./singles70";
 import { Flat70CableTables } from "./flat70";
 import { SWA70CableTables } from "./swa70";
