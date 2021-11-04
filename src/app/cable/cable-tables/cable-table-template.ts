@@ -1,15 +1,13 @@
 import { CSARecord } from "../../types/csa-record";
-import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
-import { REF_METHODS } from "../../types/RefMethods";
+import { NOMINAL_VOLTAGE } from "../../types/nominal-voltage";
+import { REF_METHODS } from "../../types/ref-methods";
 export abstract class CableTableTemplate {
    public abstract getCCCTable(
       nominalVoltage: NOMINAL_VOLTAGE,
-      refMethod: keyof typeof REF_METHODS,
-   ): CSARecord[] | null;
+      refMethod: REF_METHODS,
+   ): CSARecord[] | Error;
    public abstract getVDTable(
       nominalVoltage: NOMINAL_VOLTAGE,
-      refMethod: keyof typeof REF_METHODS,
-   ): CSARecord[] | null
-
-
+      refMethod: REF_METHODS,
+   ): CSARecord[] | Error;
 }

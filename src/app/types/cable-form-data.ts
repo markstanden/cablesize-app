@@ -1,9 +1,9 @@
-import { NOMINAL_VOLTAGE } from "./NominalVoltage";
-import { REF_METHODS } from "./RefMethods";
-import { CableType } from "./cable-type";
+import { NOMINAL_VOLTAGE } from "./nominal-voltage";
+import { REF_METHODS } from "./ref-methods";
+import { CABLE_TYPE } from "./cable-type";
 export type CableFormData = {
-   "cable-type"?: keyof CableType;
-   "installation-method"?: keyof typeof REF_METHODS;
+   "cable-type"?: CABLE_TYPE;
+   "installation-method"?: REF_METHODS;
    "length"?: number;
    "nominal-voltage"?: NOMINAL_VOLTAGE;
    "zdb"?: number;

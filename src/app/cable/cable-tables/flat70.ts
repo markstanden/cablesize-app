@@ -1,7 +1,7 @@
+import { NOMINAL_VOLTAGE } from "./../../types/nominal-voltage";
+import { REF_METHODS } from "../../types/ref-methods";
+import { CableTableError } from "./../../errors/cable-table-errors";
 import { CableTable } from "./../../types/cable-table";
-import { errorInvalidRefMethodForCableType } from "./../../errors/cable-table-errors";
-import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
-import { REF_METHODS } from "../../types/RefMethods";
 import { CableTableTemplate } from "./cable-table-template";
 import { CSARecord } from "../../types/csa-record";
 
@@ -10,54 +10,67 @@ export class Flat70CableTables
 {
    public getCCCTable(
       nominalVoltage: NOMINAL_VOLTAGE,
-      refMethod: keyof typeof REF_METHODS,
-   ): CableTable {
+      refMethod: REF_METHODS,
+   ): CableTable | Error {
       switch (nominalVoltage) {
-         case "230V":
+         case NOMINAL_VOLTAGE.SP:
             switch (refMethod) {
-               case "A":
+               case REF_METHODS.REF_A:
                   return this.ccc_refA;
-               case "C":
-               case "EF":
+               case REF_METHODS.REF_C:
+               case REF_METHODS.REF_EF:
                   return this.ccc_refC;
-               case "100":
+               case REF_METHODS.REF_100:
                   return this.ccc_ref100;
-               case "101":
+               case REF_METHODS.REF_101:
                   return this.ccc_ref101;
-               case "102":
+               case REF_METHODS.REF_102:
                   return this.ccc_ref102;
-               case "103":
+               case REF_METHODS.REF_103:
                   return this.ccc_ref103;
                default:
-                  throw errorInvalidRefMethodForCableType;
+                  return new Error(
+                     CableTableError.InvalidRefMethodForCableType,
+                  );
             }
-         case "400V":
+         case NOMINAL_VOLTAGE.TP:
          default:
-            throw errorInvalidRefMethodForCableType;
+            return new Error(
+               CableTableError.InvalidRefMethodForCableType,
+            );
       }
    }
 
    public getVDTable(
       nominalVoltage: NOMINAL_VOLTAGE,
-      refMethod: keyof typeof REF_METHODS,
-   ): CableTable {
+      refMethod: REF_METHODS,
+   ): CableTable | Error {
       switch (nominalVoltage) {
-         case "230V":
+         case NOMINAL_VOLTAGE.SP:
             switch (refMethod) {
-               case "A":
-               case "C":
-               case "EF":
-               case "100":
-               case "101":
-               case "102":
-               case "103":
+               case REF_METHODS.REF_A:
+
+               case REF_METHODS.REF_C:
+               case REF_METHODS.REF_EF:
+
+               case REF_METHODS.REF_100:
+
+               case REF_METHODS.REF_101:
+
+               case REF_METHODS.REF_102:
+
+               case REF_METHODS.REF_103:
                   return this.voltDrop;
                default:
-                  throw errorInvalidRefMethodForCableType;
+                  return new Error(
+                     CableTableError.InvalidRefMethodForCableType,
+                  );
             }
-         case "400V":
+         case NOMINAL_VOLTAGE.TP:
          default:
-            throw errorInvalidRefMethodForCableType;
+            return new Error(
+               CableTableError.InvalidRefMethodForCableType,
+            );
       }
    }
    /** Current Carrying Capacity of the cable (in Amps) for each CSA (in mm2)

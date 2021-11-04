@@ -1,7 +1,8 @@
+import { CableTable } from "./../../types/cable-table";
 import { CableTable } from "../../types/cable-table";
 import { CableTableStorage } from "../../types/cable-table-storage";
-import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
-import { REF_METHODS } from "../../types/RefMethods";
+import { NOMINAL_VOLTAGE } from "../../types/nominal-voltage";
+import { REF_METHODS } from "../../types/ref-methods";
 import { CableTableTemplate } from "./cable-table-template";
 
 export class CableTableStore implements CableTableStorage {
@@ -9,15 +10,15 @@ export class CableTableStore implements CableTableStorage {
    protected readonly vdValues: CableTable;
 
    constructor(
-      refMethod: keyof typeof REF_METHODS,
+      refMethod: REF_METHODS,
       nominalVoltage: NOMINAL_VOLTAGE,
       cableTable: CableTableTemplate,
    ) {
-      const cccTable: CableTable | null =
+      const cccTable: CableTable | Error =
          cableTable.getCCCTable(nominalVoltage, refMethod);
-      const vdTable: CableTable | null =
+      const vdTable: CableTable | Error =
          cableTable.getVDTable(nominalVoltage, refMethod);
-      if (cccTable == null || vdTable == null) {
+      if (cccTable || !vdTable) {
          throw new Error("Invalid Reference Method");
       }
 

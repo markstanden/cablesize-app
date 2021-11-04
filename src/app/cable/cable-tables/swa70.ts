@@ -1,8 +1,8 @@
-import { errorInvalidRefMethodForCableType } from "./../../errors/cable-table-errors";
+import { CableTableError } from "./../../errors/cable-table-errors";
 import { CableTable } from "./../../types/cable-table";
 import { CSARecord } from "../../types/csa-record";
-import { REF_METHODS } from "../../types/RefMethods";
-import { NOMINAL_VOLTAGE } from "../../types/NominalVoltage";
+import { REF_METHODS } from "../../types/ref-methods";
+import { NOMINAL_VOLTAGE } from "../../types/nominal-voltage";
 import { CableTableTemplate } from "./cable-table-template";
 
 export class SWA70CableTables
@@ -10,61 +10,73 @@ export class SWA70CableTables
 {
    public getCCCTable(
       nominalVoltage: NOMINAL_VOLTAGE,
-      refMethod: keyof typeof REF_METHODS,
-   ): CableTable {
+      refMethod: REF_METHODS,
+   ): CableTable | Error {
       switch (nominalVoltage) {
-         case "230V":
+         case NOMINAL_VOLTAGE.SP:
             switch (refMethod) {
-               case "C":
+               case REF_METHODS.REF_C:
                   return this.ccc_refC_SP;
-               case "D":
+               case REF_METHODS.REF_D:
                   return this.ccc_refD_SP;
-               case "EF":
+               case REF_METHODS.REF_EF:
                   return this.ccc_refE_SP;
                default:
-                  throw errorInvalidRefMethodForCableType;
+                  return new Error(
+                     CableTableError.InvalidRefMethodForCableType,
+                  );
             }
-         case "400V":
+         case NOMINAL_VOLTAGE.TP:
             switch (refMethod) {
-               case "C":
+               case REF_METHODS.REF_C:
                   return this.ccc_refC_TP;
-               case "D":
+               case REF_METHODS.REF_D:
                   return this.ccc_refD_TP;
-               case "EF":
+               case REF_METHODS.REF_EF:
                   return this.ccc_refE_TP;
                default:
-                  throw errorInvalidRefMethodForCableType;
+                  return new Error(
+                     CableTableError.InvalidRefMethodForCableType,
+                  );
             }
          default:
-            throw errorInvalidRefMethodForCableType;
+            return new Error(
+               CableTableError.InvalidRefMethodForCableType,
+            );
       }
    }
 
    public getVDTable(
       nominalVoltage: NOMINAL_VOLTAGE,
-      refMethod: keyof typeof REF_METHODS,
-   ): CableTable {
+      refMethod: REF_METHODS,
+   ): CableTable | Error {
       switch (nominalVoltage) {
-         case "230V":
+         case NOMINAL_VOLTAGE.SP:
             switch (refMethod) {
-               case "C":
-               case "D":
-               case "EF":
+               case REF_METHODS.REF_C:
+               case REF_METHODS.REF_D:
+               case REF_METHODS.REF_EF:
                   return this.voltDrop_SP;
                default:
-                  throw errorInvalidRefMethodForCableType;
+                  return new Error(
+                     CableTableError.InvalidRefMethodForCableType,
+                  );
             }
-         case "400V":
+         case NOMINAL_VOLTAGE.TP:
             switch (refMethod) {
-               case "C":
-               case "D":
-               case "EF":
+               case REF_METHODS.REF_C:
+               case REF_METHODS.REF_D:
+               case REF_METHODS.REF_EF:
                   return this.voltDrop_TP;
                default:
-                  throw errorInvalidRefMethodForCableType;
+                  return new Error(
+                     CableTableError.InvalidRefMethodForCableType,
+                  );
             }
          default:
-            throw errorInvalidRefMethodForCableType;
+            return new Error(
+               CableTableError.InvalidRefMethodForCableType,
+            );
       }
    }
 
