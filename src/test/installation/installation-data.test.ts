@@ -54,10 +54,10 @@ describe("installationData Tests", () => {
          new InstallationData(formDataStub);
       }).toThrowError(CableTableError.InvalidFormData);
    });
-     test("Test invalid form data (Nominal Voltage) throws error", () => {
-        formDataStub["nominal-voltage"] = "Test" as any;
-        expect(() => {
-           new InstallationData(formDataStub);
-        }).toThrowError(CableTableError.InvalidFormData);
-     });
+   test("Test invalid form data (Nominal Voltage) throws error", () => {
+      formDataStub["nominal-voltage"] = "Test" as any;
+      expect(() => {
+         new InstallationData(formDataStub);
+      }).toThrowError(CableTableError.InvalidFormData);
+   });
 });

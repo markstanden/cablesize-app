@@ -1,5 +1,6 @@
+import { CableTableError } from "./../../errors/cable-table-errors";
 import { CableTable } from "./../../types/cable-table";
-import { CableTable } from "../../types/cable-table";
+
 import { CableTableStorage } from "../../types/cable-table-storage";
 import { NOMINAL_VOLTAGE } from "../../types/nominal-voltage";
 import { REF_METHODS } from "../../types/ref-methods";
@@ -18,8 +19,13 @@ export class CableTableStore implements CableTableStorage {
          cableTable.getCCCTable(nominalVoltage, refMethod);
       const vdTable: CableTable | Error =
          cableTable.getVDTable(nominalVoltage, refMethod);
-      if (cccTable || !vdTable) {
-         throw new Error("Invalid Reference Method");
+      if (
+         cccTable instanceof Error ||
+         vdTable instanceof Error
+      ) {
+         throw new Error(
+            CableTableError.InvalidRefMethodForCableType,
+         );
       }
 
       this.cccValues = this.sortedTable(cccTable);
@@ -27,12 +33,12 @@ export class CableTableStore implements CableTableStorage {
    }
 
    /**
-    * Returns a shallow copy of the provided array after sorting by CSA
+    * Returns a shallow copy of the provided array after sorting by current carrying capacity
     */
    private sortedTable(table: CableTable): CableTable {
       return [
          ...table.sort((a, b) => {
-            return a[0] - b[0];
+            return a[1] - b[1];
          }),
       ];
    }

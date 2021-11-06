@@ -1,4 +1,4 @@
-/* export type CSAValues = {
+export interface CSAValues {
    1.0?: number;
    1.5?: number;
    2.5?: number;
@@ -21,11 +21,4 @@
    630?: number;
    800?: number;
    1000?: number;
-}; */
-
-export const CSA = [
-   1.0, 1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120,
-   150, 185, 240, 300, 400, 500, 630, 800, 1000,
-] as const;
-
-export type CSAValues = typeof CSA;
+}
