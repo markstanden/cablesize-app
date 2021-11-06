@@ -1,5 +1,5 @@
 export enum CABLE_TYPE {
-   SINGLES70 = "70 Degree Thermoplastic Insulated Singles",
-   FLAT70 = "70 Degree Sheathed Flat Cable",
-   SWA70 = "70 Degree Steel Armoured Cable",
+   SINGLES70 = "singles70",
+   FLAT70 = "flat70",
+   SWA70 = "swa70",
 }

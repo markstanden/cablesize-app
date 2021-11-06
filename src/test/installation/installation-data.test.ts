@@ -1,8 +1,8 @@
-import { CableFormData } from "./../../app/types/cable-form-data";
+import { CABLE_PARAMS } from "./../../app/types/cable-params";
 import { CableTableError } from "./../../app/errors/cable-table-errors";
 import { InstallationData } from "./../../app/installation/installation-data";
 describe("installationData Tests", () => {
-   let formDataStub: CableFormData;
+   let formDataMock: URLSearchParams;
 
    beforeAll(() => {
       //runs before all tests
@@ -10,7 +10,7 @@ describe("installationData Tests", () => {
 
    beforeEach(() => {
       //runs before each test
-      formDataStub = {};
+      formDataMock = new URLSearchParams();
    });
 
    test.todo(
@@ -18,7 +18,7 @@ describe("installationData Tests", () => {
    );
 
    test("Check non zero defaults are present for empty fields", () => {
-      const data = new InstallationData({});
+      const data = new InstallationData(formDataMock);
       expect(data.cableType).not.toBeFalsy();
       expect(data.length).not.toBeFalsy();
       expect(data.loadCurrent).not.toBeFalsy();
@@ -29,35 +29,46 @@ describe("installationData Tests", () => {
    });
 
    test("Test invalid form data (cable-type) throws error", () => {
-      formDataStub["cable-type"] = "Test" as any;
+      formDataMock.set(
+         CABLE_PARAMS.CABLE_TYPE,
+         "Test" as any,
+      );
       expect(() => {
-         new InstallationData(formDataStub);
+         new InstallationData(formDataMock);
       }).toThrowError(CableTableError.InvalidFormData);
    });
 
    test("Test invalid form data (installation-type) throws error", () => {
-      formDataStub["installation-method"] = "Test" as any;
+      formDataMock.set(
+         CABLE_PARAMS.REF_METHOD,
+         "Test" as any,
+      );
       expect(() => {
-         new InstallationData(formDataStub);
+         new InstallationData(formDataMock);
+      }).toThrowError(CableTableError.InvalidFormData);
+   });
+
+   test("Test invalid form data (Nominal Voltage) throws error", () => {
+      formDataMock.set(
+         CABLE_PARAMS.NOMINAL_VOLTAGE,
+         "Test" as any,
+      );
+      expect(() => {
+         new InstallationData(formDataMock);
       }).toThrowError(CableTableError.InvalidFormData);
    });
 
    test("Test invalid form data (length) throws error", () => {
-      formDataStub.length = "Test" as any;
+      formDataMock.set(CABLE_PARAMS.LENGTH, "Test" as any);
       expect(() => {
-         new InstallationData(formDataStub);
+         new InstallationData(formDataMock);
       }).toThrowError(CableTableError.InvalidFormData);
    });
+
    test("Test invalid form data (Zdb) throws error", () => {
-      formDataStub.zdb = "Test" as any;
+      formDataMock.set(CABLE_PARAMS.ZDB, "Test" as any);
       expect(() => {
-         new InstallationData(formDataStub);
-      }).toThrowError(CableTableError.InvalidFormData);
-   });
-   test("Test invalid form data (Nominal Voltage) throws error", () => {
-      formDataStub["nominal-voltage"] = "Test" as any;
-      expect(() => {
-         new InstallationData(formDataStub);
+         new InstallationData(formDataMock);
       }).toThrowError(CableTableError.InvalidFormData);
    });
 });

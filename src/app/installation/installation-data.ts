@@ -1,10 +1,15 @@
+import { CABLE_PARAMS } from "../types/cable-params";
 import { CableTableError } from "./../errors/cable-table-errors";
 import { NOMINAL_VOLTAGE } from "../types/nominal-voltage";
 import { REF_METHODS } from "../types/ref-methods";
 import { CABLE_TYPE } from "../types/cable-type";
-import { CableFormData } from "../types/cable-form-data";
 import { isValidEnumKey } from "../../lib/is-valid-enum-key";
 
+/**
+ * Creates an InstallationData object from a URLSearchParams object.
+ * Sets sensible defaults for empty fields.
+ * Throws CableTableError.InvalidFormData Error if invalid data is present.
+ */
 export class InstallationData {
    private _cableType: CABLE_TYPE;
    private _refMethod: REF_METHODS;
@@ -14,67 +19,62 @@ export class InstallationData {
    private _ocpdCurrent: number;
    private _loadCurrent: number;
 
-   private isPresent(
-      data: URLSearchParams,
-      term: string,
-   ): boolean {
-      return data.get(term) != null;
-   }
-
    constructor(data: URLSearchParams) {
-      // Check whether supplied form data is valid TT
-      if (cableType) {
-         if (isValidEnumKey(CABLE_TYPE, cableType)) {
-            this._cableType = cableType;
-         } else {
-            throw new Error(
-               CableTableError.InvalidFormData,
-            );
-         }
-      }
-
       // Check whether supplied form data is valid
-      if (
-         data["installation-method"] &&
-         !Object.values(REF_METHODS).includes(
-            data["installation-method"],
-         )
-      ) {
-         throw new Error(CableTableError.InvalidFormData);
-      } else {
-         this._refMethod =
-            data["installation-method"] ||
-            REF_METHODS.REF_C;
-      }
 
-      // Check whether supplied form data is valid
-      if (
-         data["nominal-voltage"] &&
-         !Object.values(NOMINAL_VOLTAGE).includes(
-            data["nominal-voltage"],
-         )
-      ) {
-         throw new Error(CableTableError.InvalidFormData);
-      } else {
-         this._nominalVoltage =
-            data["nominal-voltage"] || NOMINAL_VOLTAGE.SP;
-      }
+      this._cableType =
+         this.getVerifiedParam(
+            CABLE_TYPE,
+            data.get(CABLE_PARAMS.CABLE_TYPE),
+         ) || CABLE_TYPE.SINGLES70;
+
+      this._refMethod =
+         this.getVerifiedParam(
+            REF_METHODS,
+            data.get(CABLE_PARAMS.REF_METHOD),
+         ) || REF_METHODS.REF_C;
+
+      this._nominalVoltage =
+         this.getVerifiedParam(
+            NOMINAL_VOLTAGE,
+            data.get(CABLE_PARAMS.NOMINAL_VOLTAGE),
+         ) || NOMINAL_VOLTAGE.SP;
 
       // Check whether supplied form data is valid number
       if (
-         (data.length && isNaN(Number(data.length))) ||
-         (data.zdb && isNaN(Number(data.zdb))) ||
-         (data["ocpd-current"] &&
-            isNaN(Number(data["ocpd-current"]))) ||
-         (data["load-current"] &&
-            isNaN(Number(data["load-current"])))
+         isNaN(Number(data.get(CABLE_PARAMS.LENGTH))) ||
+         isNaN(Number(data.get(CABLE_PARAMS.ZDB))) ||
+         isNaN(
+            Number(data.get(CABLE_PARAMS.OCPD_CURRENT)),
+         ) ||
+         isNaN(Number(data.get(CABLE_PARAMS.LOAD_CURRENT)))
       ) {
          throw new Error(CableTableError.InvalidFormData);
       } else {
-         this._length = data["length"] || 2;
-         this._zdb = data["zdb"] || 0.35;
-         this._ocpdCurrent = data["ocpd-current"] || 63;
-         this._loadCurrent = data["load-current"] || 63;
+         this._length =
+            Number(data.get(CABLE_PARAMS.LENGTH)) || 2;
+         this._zdb =
+            Number(data.get(CABLE_PARAMS.ZDB)) || 0.35;
+         this._ocpdCurrent =
+            Number(data.get(CABLE_PARAMS.OCPD_CURRENT)) ||
+            63;
+         this._loadCurrent =
+            Number(data.get(CABLE_PARAMS.LOAD_CURRENT)) ||
+            63;
+      }
+   }
+
+   private getVerifiedParam<ENUM>(
+      listEnum: ENUM,
+      param: string | null,
+   ) {
+      if (param == null) {
+         return null;
+      }
+      if (isValidEnumKey(listEnum, param)) {
+         return listEnum[param];
+      } else {
+         throw new Error(CableTableError.InvalidFormData);
       }
    }
 

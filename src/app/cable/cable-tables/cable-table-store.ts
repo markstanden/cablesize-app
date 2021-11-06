@@ -6,6 +6,12 @@ import { NOMINAL_VOLTAGE } from "../../types/nominal-voltage";
 import { REF_METHODS } from "../../types/ref-methods";
 import { CableTableTemplate } from "./cable-table-template";
 
+/**
+ * Object to store the correct data table for the
+ * cable type, nominal voltage and reference method supplied.
+ * Throws an CableTableError.InvalidRefMethodForCableType Error if
+ * BS7671 doesn't support the reference method for the cable type.
+ */
 export class CableTableStore implements CableTableStorage {
    protected readonly cccValues: CableTable;
    protected readonly vdValues: CableTable;
