@@ -3,6 +3,7 @@ import { NOMINAL_VOLTAGE } from "../types/nominal-voltage";
 import { REF_METHODS } from "../types/ref-methods";
 import { CABLE_TYPE } from "../types/cable-type";
 import { CableFormData } from "../types/cable-form-data";
+import { isValidEnumKey } from "../../lib/is-valid-enum-key";
 
 export class InstallationData {
    private _cableType: CABLE_TYPE;
@@ -13,18 +14,23 @@ export class InstallationData {
    private _ocpdCurrent: number;
    private _loadCurrent: number;
 
-   constructor(data: CableFormData) {
-      // Check whether supplied form data is valid
-      if (
-         data["cable-type"] &&
-         !Object.values(CABLE_TYPE).includes(
-            data["cable-type"],
-         )
-      ) {
-         throw new Error(CableTableError.InvalidFormData);
-      } else {
-         this._cableType =
-            data["cable-type"] || CABLE_TYPE.SINGLES70;
+   private isPresent(
+      data: URLSearchParams,
+      term: string,
+   ): boolean {
+      return data.get(term) != null;
+   }
+
+   constructor(data: URLSearchParams) {
+      // Check whether supplied form data is valid TT
+      if (cableType) {
+         if (isValidEnumKey(CABLE_TYPE, cableType)) {
+            this._cableType = cableType;
+         } else {
+            throw new Error(
+               CableTableError.InvalidFormData,
+            );
+         }
       }
 
       // Check whether supplied form data is valid
