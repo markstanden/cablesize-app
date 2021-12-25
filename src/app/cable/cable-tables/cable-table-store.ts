@@ -36,6 +36,8 @@ export class CableTableStore implements CableTableStorage {
 
       this.cccValues = this.sortedTable(cccTable);
       this.vdValues = this.sortedTable(vdTable);
+      this.cccValues = [...cccTable];
+      this.vdValues = [...vdTable];
    }
 
    /**
@@ -52,13 +54,13 @@ export class CableTableStore implements CableTableStorage {
    /**
     * Returns a shallow copy of the CCC Table
     */
-   public getCCCTable() {
+   public getSortedCCCTable() {
       return this.sortedTable(this.cccValues);
    }
    /**
     * Returns a shallow copy of the VD Table
     */
-   public getVDTable() {
+   public getSortedVDTable() {
       return this.sortedTable(this.vdValues);
    }
 }

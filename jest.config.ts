@@ -16,7 +16,7 @@ const config: Config.InitialOptions = {
       "node",
    ],
    verbose: true,
-   collectCoverage: false,
+   collectCoverage: true,
    collectCoverageFrom: ["<rootDir>/src/app/**/*.ts*"],
 };
 

@@ -5,7 +5,7 @@ import { CurrentCarryingCapacity } from "../../app/cable/ccc";
 describe("CCC Class Tests", () => {
    let c: CurrentCarryingCapacity;
    const tableStoreMock = {
-      getCCCTable: () => [
+      getSortedCCCTable: () => [
          [1, 10],
          [2, 20],
          [3, 30],

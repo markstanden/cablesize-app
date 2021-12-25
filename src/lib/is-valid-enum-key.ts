@@ -12,12 +12,4 @@ export function isValidEnumKey<ENUM>(
    }
 
    return testKey in enumObject;
-
-   for (const key in enumObject) {
-      if (key === testKey) {
-         return true;
-      }
-   }
-
-   return false;
 }

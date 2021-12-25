@@ -6,6 +6,7 @@ import { Handler } from "@netlify/functions";
 const handler: Handler = async (event, context) => {
    /* Get the seach params */
    let installation: InstallationData;
+   console.log(event.body);
    try {
       installation = new InstallationData(
          new URLSearchParams(event.body),

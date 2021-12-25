@@ -1,6 +1,6 @@
 export enum CABLE_PARAMS {
    CABLE_TYPE = "cable-type",
-   REF_METHOD = "installation-method",
+   REF_METHOD = "ref-method",
    LENGTH = "length",
    NOMINAL_VOLTAGE = "nominal-voltage",
    ZDB = "zdb",

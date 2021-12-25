@@ -7,7 +7,7 @@ export class CurrentCarryingCapacity {
    private _table: CableTable;
    constructor(tableStore: CableTableStorage) {
       try {
-         this._table = tableStore.getCCCTable();
+         this._table = tableStore.getSortedCCCTable();
       } catch (error) {
          throw new Error(CableTableError.InvalidStore);
       }

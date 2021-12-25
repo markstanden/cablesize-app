@@ -3,7 +3,7 @@ import { CableTableError } from "./../errors/cable-table-errors";
 import { NOMINAL_VOLTAGE } from "../types/nominal-voltage";
 import { REF_METHODS } from "../types/ref-methods";
 import { CABLE_TYPE } from "../types/cable-type";
-import { isValidEnumKey } from "../../lib/is-valid-enum-key";
+import { isValidEnumValue } from "../../lib/is-valid-enum-value";
 
 /**
  * Creates an InstallationData object from a URLSearchParams object.
@@ -71,8 +71,8 @@ export class InstallationData {
       if (param == null) {
          return null;
       }
-      if (isValidEnumKey(listEnum, param)) {
-         return listEnum[param];
+      if (isValidEnumValue(listEnum, param)) {
+         return param;
       } else {
          throw new Error(CableTableError.InvalidFormData);
       }
